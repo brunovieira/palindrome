@@ -1,0 +1,20 @@
+<!doctype html>
+<html ng-app="app">
+  <head>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.0/angular.min.js"></script>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css">
+    <script src="./app.js"></script>
+    <script src="./palindromeController.js"></script>
+  </head>
+  <body ng-controller="palindromeController">
+    <div class="container">
+      <label >Name:</label>
+      <input type="text" ng-model="name" placeholder="Enter a name here">
+      <input type="button" ng-click="verifyPalindrome()" value="Validate">
+      <hr>
+      <h1>Name: {{name}}</h1>
+      <hr>
+      <h1>Palindrome: {{messagePalindrome}}</h1>
+    </div>
+  </body>
+</html>

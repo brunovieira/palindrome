@@ -1,14 +1,19 @@
-var request = require('request');
+
+function isPalindrome(palindrome) {
+	var originalSentence = palindrome.replace(/\s+/g, '').toUpperCase();
+	var reverseSentence = originalSentence.split('').reverse().join('').toUpperCase();
+	return originalSentence === reverseSentence;
+}
 
 var PalindromeController = {
-  index: function(req, res){
-    res.render('index', { title: 'Challenge', message: ""});
-  },
-  palindromeVerify: function(req, res){
-    request('http://localhost:4000/verifyPalindrome/'+req.params.palindrome, function (error, response, body) {
-        res.render('index', { title: 'Challenge', status: body.status, message: body.message});
-    });
-  },
+	verify: function(req, res, next) {
+			if(req.params.palindrome && isPalindrome(req.params.palindrome)) {
+				res.send(200, { success: true, message: 'It is a Palindrome.' });
+			} else {
+				res.send(400, { success: false, message: 'It is not a Palindrome.' });
+			}
+	  	next();
+	}
 };
 
 module.exports = PalindromeController;
